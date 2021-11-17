@@ -22,7 +22,24 @@
             background-color: #efefef;
         }
     </style>
-    <button>Батончик</button>
-    <div class="button">Батончик дивовский</div>
+    <button onclick=downloadTest>Тыкни на батончик</button>
 </body>
+    <script>
+    function downloadTest() {
+    const testFile = new Blob(['Hello'], {type: 'application/pdf'});
+                const a = document.createElement('a');
+                const url = URL.createObjectURL(testFile);
+
+                a.href = url;
+                a.download = 'test.pdf';
+
+                document.body.appendChild(a);
+                a.click();
+
+                setTimeout(() => {
+                    document.body.removeChild(a);
+                    window.URL.revokeObjectURL(url);
+                }, 1000);
+    }
+    </script>
 </html>
