@@ -26,20 +26,32 @@
 </body>
     <script>
     function downloadTest() {
-    const testFile = new Blob(['Hello'], {type: 'application/pdf'});
-                const a = document.createElement('a');
-                const url = URL.createObjectURL(testFile);
+    const formData = new FormData();
+let qqq = '';
+for (let index = 0; index < 100; index++) {
+qqq += `<div>h</div>`;
+}
+formData.append('html', `
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    ${qqq}
+</body>
+</html>
+`);
 
-                a.href = url;
-                a.download = 'test.pdf';
-
-                document.body.appendChild(a);
-                a.click();
-
-                setTimeout(() => {
-                    document.body.removeChild(a);
-                    window.URL.revokeObjectURL(url);
-                }, 1000);
+const request = fetch('https://pdf-gen.test.certitdev.ru/html/generate_pdf?download=true', {
+    method: 'POST',
+    body: formData
+}).then(async q => {
+const url = await q.json();
+window.open(url.url, '_blank');
+})
     }
     </script>
 </html>
