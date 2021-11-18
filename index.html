@@ -45,7 +45,7 @@ formData.append('html', `
 </html>
 `);
 
-const request = fetch('https://pdf-gen.test.certitdev.ru/html/generate_pdf?download=true', {
+const request = fetch('http://127.0.0.1:3000/html/generate_pdf?download=true', {
     method: 'POST',
     body: formData
 }).then(async q => {
