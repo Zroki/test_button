@@ -45,13 +45,12 @@ formData.append('html', `
 </html>
 `);
 
-const request = fetch('http://127.0.0.1:3000/html/generate_pdf?download=true', {
+const request = fetch('https://pdf-gen.test.certitdev.ru/html/generate_pdf?download=true', {
     method: 'POST',
     body: formData
 }).then(async q => {
 const url = await q.json();
 document.body.insertAdjacentHTML('afterbegin', `<a download href="${url.url}">Скачать</a>`);
-    document.body.insertAdjacentHTML('afterbegin', `<a href="${url.url}">Открыть</a>`)
 })
     }
     </script>
