@@ -50,7 +50,7 @@ const request = fetch('https://pdf-gen.test.certitdev.ru/html/generate_pdf?downl
     body: formData
 }).then(async q => {
 const url = await q.json();
-window.open(url.url, '_blank');
+document.body.insertAdjacentHTML('afterbegin', `<a download="test.pdf" href="${url.url}">123123123</a>`)
 })
     }
     </script>
